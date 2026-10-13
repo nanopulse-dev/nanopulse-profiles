@@ -1,7 +1,9 @@
+---@class profile
+local profile = require("common.profile")
 local sensor = require("common.components.sensor")
 local tracker = require("common.components.tracker")
 
-local M = {}
+local M = setmetatable({}, { __index = profile })
 
 -- Name of the device.
 M.name = "Temperature sensor + Wi-Fi geolocation"
@@ -23,26 +25,6 @@ function M.decode_telemetry(payload)
 		temperature = np.decode_i16_le(payload[1], payload[2]) / 10.0,
 		location = np.wifi_resolve_location(string.char(unpack(payload)):sub(3)),
 	}
-end
-
--- Returns the state schema.
-function M.state_schema()
-	return {}
-end
-
--- Default state.
-function M.default_state()
-	return {}
-end
-
--- Decode state payload.
-function M.decode_state(_)
-	return {}
-end
-
--- Encode state payload
-function M.encode_state(_)
-	return {}
 end
 
 return M

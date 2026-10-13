@@ -1,6 +1,9 @@
+---@class profile
+local profile = require("common.profile")
 local sensor = require("common.components.sensor")
 local switch = require("common.components.switch")
-local M = {}
+
+local M = setmetatable({}, { __index = profile })
 
 -- Name of the device.
 M.name = "Temperature sensor + light switch"
